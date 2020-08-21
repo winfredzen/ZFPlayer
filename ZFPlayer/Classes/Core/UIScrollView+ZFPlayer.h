@@ -82,10 +82,10 @@ typedef NS_ENUM(NSInteger , ZFPlayerScrollViewScrollPosition) {
 /// When the ZFPlayerScrollViewDirection is ZFPlayerScrollViewDirectionHorizontal，this value can only be ZFPlayerScrollDirectionLeft or ZFPlayerScrollDirectionRight.
 @property (nonatomic, readonly) ZFPlayerScrollDirection zf_scrollDirection;
 
-/// Get the cell according to indexPath.
+/// Get the cell according to indexPath. 获取对应indexPath的cell
 - (UIView *)zf_getCellForIndexPath:(NSIndexPath *)indexPath;
 
-/// Get the indexPath for cell.
+/// Get the indexPath for cell. 获取对应cell的indexPath
 - (NSIndexPath *)zf_getIndexPathForCell:(UIView *)cell;
 
 /**
@@ -190,7 +190,7 @@ Scroll to indexPath with position.
 /// The indexPath is playing.
 @property (nonatomic, nullable) NSIndexPath *zf_playingIndexPath;
 
-/// The indexPath should be play while scrolling.
+/// The indexPath should be play while scrolling. 滚动时应该播放的indexpath
 @property (nonatomic, nullable) NSIndexPath *zf_shouldPlayIndexPath;
 
 /// WWANA networks play automatically,default NO.

@@ -170,6 +170,8 @@ Scroll to indexPath with position.
         [self _findCorrectCellWhenScrollViewDirectionHorizontal:nil];
         [self _scrollViewScrollingDirectionHorizontal];
     }
+    
+    NSLog(@"offset = %@", NSStringFromCGPoint(self.contentOffset));
 }
 
 - (void)zf_scrollViewWillBeginDragging {
@@ -406,6 +408,7 @@ Scroll to indexPath with position.
 
 /**
  Find the playing cell while the scrollDirection is vertical.
+ 竖直滚动的时候找到需要播放的cell
  */
 - (void)_findCorrectCellWhenScrollViewDirectionVertical:(void (^ __nullable)(NSIndexPath *indexPath))handler {
     if (!self.zf_shouldAutoPlay) return;
@@ -430,7 +433,7 @@ Scroll to indexPath with position.
         indexPath = tableView.indexPathsForVisibleRows.firstObject;
         if (self.contentOffset.y <= 0 && (!self.zf_playingIndexPath || [indexPath compare:self.zf_playingIndexPath] == NSOrderedSame)) {
             UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-            UIView *playerView = [cell viewWithTag:self.zf_containerViewTag];
+            UIView *playerView = [cell viewWithTag:self.zf_containerViewTag]; //通过zf_containerViewTag取view
             if (playerView && !playerView.hidden && playerView.alpha > 0.01) {
                 if (self.zf_scrollViewDidScrollCallback) self.zf_scrollViewDidScrollCallback(indexPath);
                 if (handler) handler(indexPath);
@@ -497,6 +500,8 @@ Scroll to indexPath with position.
     } else {
         cells = [visiableCells reverseObjectEnumerator].allObjects;
     }
+    
+    //找到需要播放的cell
     
     /// Mid line.
     CGFloat scrollViewMidY = CGRectGetHeight(self.frame)/2;
